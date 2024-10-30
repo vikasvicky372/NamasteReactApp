@@ -100,3 +100,26 @@
     text-decoration: none;
     color: black;
 }
+
+.user-card {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.img-container {
+    height: 200px;
+}
+
+.img-profile {
+    height: 200px;
+    border-radius: 100px;
+}
+
+.logo-container {
+    display: flex;
+    text-align: center;
+}
