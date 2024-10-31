@@ -43,10 +43,10 @@ const Body = () => {
   };
 
   return (
-    <div className="body-container">
-      <div className="container">
-        <div className="search-container">
-          <input
+    <div className="mx-4 p-4">
+      <div className=" p-2 m-2 flex ">
+        <div className="mr-4 flex">
+          <input className="mr-1 border border-solid border-black rounded-sm"
             type="text"
             value={searchText}
             onChange={(e) => {
@@ -56,13 +56,13 @@ const Body = () => {
               e.key === "Enter" ? searchLogic() : "";
             }}
           ></input>
-          <button className="searchBtn" onClick={searchLogic.bind(this)}>
+          <button className="p-2 px-4 rounded-md bg-green-100" onClick={searchLogic.bind(this)}>
             Search
           </button>
         </div>
-        <div className="filter-container">
+        <div className="flex">
           <button
-            className="filter"
+            className=" mr-4 p-2 px-4 rounded-md bg-green-100"
             onClick={() => {
               const filteredRestuarants = restuarantList.filter(
                 (restuarant) => restuarant.info.avgRating > 4.5
@@ -73,7 +73,7 @@ const Body = () => {
             Top Rated Restaurant
           </button>
           <button
-            className="filter"
+            className="p-2 px-4 rounded-md bg-green-100"
             onClick={() => {
               setFilteredRestuarantList(resList);
             }}
@@ -83,7 +83,7 @@ const Body = () => {
         </div>
       </div>
 
-      <div className="res-container">
+      <div className="mt-2  flex flex-wrap">
         {filteredRestuarantList.map((restuarant) => (
           <Link className="resLink" to={"/restuarants/" + restuarant.info.id}>
             <RestuarantCard key={restuarant.info.id} resData={restuarant} />

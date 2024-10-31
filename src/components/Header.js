@@ -7,39 +7,44 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 const Header = () => {
   const [btnLogin, setBtnLogin] = useState("Login");
   const location = useLocation();
-  const onlineStatus =  useOnlineStatus();
+  const onlineStatus = useOnlineStatus();
 
-  
   return (
-    <div className="header">
-      <div className="logo-container">
-        <img className="logo" src={LOGO_URL} />
-        <div className="locate">
-          <h3 className="locate">{location ? location.city.name + "📍" : ""}</h3>
+    <div className="p-2 my-2 flex justify-between bg-orange-100 rounded-md shadow-xl top-0 sticky">
+      <div className="flex items-center">
+        <img className="h-36 w-36 rounded-xl" src={LOGO_URL} />
+        <div className="m-4 items-end">
+          <h3 className="items-end">
+            {location ? location.city.name + "📍" : ""}
+          </h3>
         </div>
       </div>
-      <div className="nav-items">
-        <ul>
-          <li>Online Status:{onlineStatus?"🟢":"🔴"}</li>
-          <li>
-            <Link className="link" to={"/"}>
+      <div className="flex items-center no-underline">
+        <ul className="flex items-center">
+          <li className=" p-2 m-2">
+            Online Status:{onlineStatus ? "🟢" : "🔴"}
+          </li>
+          <li className=" p-2 m-2 hover:bg-red-500 rounded-md">
+            <Link className="text-black hover:text-white" to={"/"}>
               Home
             </Link>
           </li>
-          <li>
-            <Link className="link" to={"/about"}>
+          <li className=" p-2 m-2 hover:bg-red-500 rounded-md">
+            <Link className="text-black hover:text-white" to={"/about"}>
               About Us
             </Link>
           </li>
-          <li>
-            <Link className="link" to={"./contact"}>
+          <li className=" p-2 m-2 hover:bg-red-500 rounded-md">
+            <Link className=" text-black hover:text-white" to={"./contact"}>
               Contact Us
             </Link>
           </li>
-          <li>Cart</li>
-          <li>
+          <li className=" p-2 m-2 hover:bg-red-500 rounded-md">
+            <Link className="text-black hover:text-white">Cart</Link>
+          </li>
+          <li className=" p-2 m-2 ">
             <button
-              className="login-btn"
+              className="inline-block rounded bg-neutral-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-neutral-50 shadow-dark-3 transition duration-150 ease-in-out hover:bg-neutral-700 hover:shadow-dark-2 focus:bg-neutral-700 focus:shadow-dark-2 focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-dark-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
               onClick={() => {
                 setBtnLogin(btnLogin === "Login" ? "Logout" : "Login");
               }}
