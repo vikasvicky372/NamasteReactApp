@@ -1,4 +1,4 @@
-import RestuarantCard from "./RestuarantCard";
+import RestuarantCard, {withOfferLabel} from "./RestuarantCard";
 import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
@@ -10,6 +10,10 @@ const Body = () => {
   const [restuarantList, setRestuarantList] = useState([]);
   const [filteredRestuarantList, setFilteredRestuarantList] = useState([]);
   const [searchText, setSearchText] = useState("");
+
+  const RestuarantCardWithOffer = withOfferLabel(RestuarantCard);
+
+  console.log("rest list",restuarantList);
 
   const onlineStatus = useOnlineStatus();
   useEffect(() => {
@@ -85,8 +89,12 @@ const Body = () => {
 
       <div className="mt-2  flex flex-wrap">
         {filteredRestuarantList.map((restuarant) => (
-          <Link className="resLink" to={"/restuarants/" + restuarant.info.id}>
-            <RestuarantCard key={restuarant.info.id} resData={restuarant} />
+          <Link className="resLink" to={"/restuarants/" + restuarant.info.id} key={restuarant.info.id}>
+
+            {
+              restuarant?.info?.aggregatedDiscountInfoV3 ? <RestuarantCardWithOffer resData={restuarant}/> : <RestuarantCard resData={restuarant} />
+            }
+            
           </Link>
         ))}
       </div>
