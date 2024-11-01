@@ -1,10 +1,13 @@
+import { useContext } from "react";
 import { CDN_URL } from "../utils/constants";
+import UserContext from "../utils/UserContext";
 
 const RestuarantCard = (props) => {
   const { resData } = props;
+  const {loggedInUser} = useContext(UserContext);
   const { cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla } =
     resData?.info;
-  //console.log(props);
+
   return (
     <div className="p-2 m-4 bg-gray-100 rounded-md w-[200px] shadow-lg hover:bg-orange-100">
       <img
@@ -16,6 +19,7 @@ const RestuarantCard = (props) => {
       <h4 className="text-sm">{avgRating}⭐</h4>
       <h4 className="text-sm">{costForTwo}</h4>
       <h4 className="text-sm">{sla?.slaString}</h4>
+      <h4 className="text-sm flex flex-wrap">user: {loggedInUser}</h4>
     </div>
   );
 };

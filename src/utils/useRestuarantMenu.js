@@ -2,22 +2,35 @@ import { useEffect, useState } from "react";
 import { MENU_API } from "./constants";
 
 const useRestuarantMenu = (resId) => {
+  const [resInfo, setResInfo] = useState(null);
 
-    //console.log("returned resInfo");
-    const[resInfo,setResInfo] = useState(null);
+  useEffect(() => {
+    fetchMenu();
+  }, []);
 
-    useEffect(() => {
-        fetchMenu();
-    }, []);
+  const fetchMenu = async () => {
+    try {
+      const response = await fetch(MENU_API + resId);
 
-    const fetchMenu =async () => {
-        const data = await fetch(MENU_API+resId);
-        const json = await data.json();
-        //console.log(json);
+      // Check if the response status is OK (status in the range 200-299)
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+
+      const json = await response.json();
+
+      // Check if `json.data` exists before setting it
+      if (json?.data) {
         setResInfo(json.data);
+      } else {
+        console.warn("No menu data found in the response");
+      }
+    } catch (error) {
+      console.error("Failed to fetch menu:", error);
     }
-    //console.log("returned resInfo");
-    return resInfo;
-}
+  };
+
+  return resInfo;
+};
 
 export default useRestuarantMenu;

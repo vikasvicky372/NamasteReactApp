@@ -3,7 +3,7 @@ import ItemCard from "./ItemCard";
 import { useState } from "react";
 
 const RestuarantCategory = (props) => {
-  //console.log(props);
+
   const { title,itemCards} = props?.data?.card?.card;
   const {showItems,setShowIndex} = props;
  // const [showItems,setShowItems] = useState(false);

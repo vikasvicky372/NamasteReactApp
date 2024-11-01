@@ -6,7 +6,6 @@ import { useRouteError } from 'react-router-dom';
 export const Error = () => {
 
     const err = useRouteError();
-    //console.log(err);
     return (
 
         <div className="not-found-container" style={styles.container}>

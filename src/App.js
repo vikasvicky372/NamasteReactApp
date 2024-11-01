@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -7,13 +7,27 @@ import Body from "./components/Body";
 import { Error } from "./components/Error";
 import RestuarantMenu from "./components/RestuarantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import UserContext from "./utils/UserContext";
+
 
 const AppLayout = () => {
+
+  const [userName,setUserName] = useState();
+
+  useEffect(() => {
+    const data = {
+      loggedInUser: "Vikas Thulasi",
+    };
+    setUserName(data.loggedInUser);
+  }, []);
+
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    <UserContext.Provider value={{loggedInUser:userName, setUserName}}>
+      <div className="app">
+        <Header />
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 
@@ -52,7 +66,7 @@ const routerConfig = createBrowserRouter([
         path: "/restuarants/:resId",
         element: (
           // <Suspense fallback={<h1>Loading.....</h1>}>
-            <RestuarantMenu />
+          <RestuarantMenu />
           // </Suspense>
         ),
       },

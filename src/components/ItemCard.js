@@ -1,7 +1,7 @@
 import { Default_Image } from "../utils/constants";
 import { CDN_URL } from "../utils/constants";
 const ItemCard = (props) => {
-  console.log(props);
+  (props);
   const { name, description, imageId } = props?.data?.card?.info;
   const showImage = imageId? (CDN_URL+imageId): Default_Image;
   return (
@@ -21,7 +21,7 @@ const ItemCard = (props) => {
       <div className="absolute">
       <button className="p-2 mx-6 bg-green-50 text-green-600 text-center rounded-md shadow-lg hover:bg-">Add +</button>
       </div>
-        <img className="m-auto w-8/12" src={showImage} alt/>
+        <img className="m-auto w-8/12" src={showImage} />
       </div>
       
     </div>
