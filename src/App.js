@@ -5,7 +5,7 @@ import Body from "./components/Body";
 //import About from "./components/About";
 //import Contact from "./components/Contact";
 import { Error } from "./components/Error";
-//import RestuarantMenu from "./components/RestuarantMenu";
+import RestuarantMenu from "./components/RestuarantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 const AppLayout = () => {
@@ -21,7 +21,7 @@ const AppLayout = () => {
 
 const About = lazy(() => import("./components/About"));
 const Contact = lazy(() => import("./components/Contact"));
-const RestuarantMenu = lazy(() => import("./components/RestuarantMenu"));
+// const RestuarantMenu = lazy(() => import("./components/RestuarantMenu"));
 
 const routerConfig = createBrowserRouter([
   {
@@ -51,9 +51,9 @@ const routerConfig = createBrowserRouter([
       {
         path: "/restuarants/:resId",
         element: (
-          <Suspense fallback={<h1>Loading.....</h1>}>
+          // <Suspense fallback={<h1>Loading.....</h1>}>
             <RestuarantMenu />
-          </Suspense>
+          // </Suspense>
         ),
       },
     ],
