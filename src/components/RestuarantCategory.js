@@ -23,7 +23,7 @@ const handleClick = () =>{
 
       <div>
         {
-           showItems && itemCards.map(item => <ItemCard key= {item?.card?.info?.id}data={item}/>)
+           showItems && itemCards.map(item => <ItemCard key= {item?.card?.info?.id}data={item?.card?.info}/>)
         }
       </div>
     </div>

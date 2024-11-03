@@ -4,12 +4,24 @@ import { Link } from "react-router-dom";
 import useLocation from "../utils/useLocatioin";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
+import { FiShoppingCart } from "react-icons/fi";
 
 const Header = () => {
   const [btnLogin, setBtnLogin] = useState("Login");
   const location = useLocation();
   const onlineStatus = useOnlineStatus();
-  const {loggedInUser} = useContext(UserContext);
+  const { loggedInUser } = useContext(UserContext);
+
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
+
+  let no_of_items = 0;
+  if(cartItems.length>0){
+    cartItems.forEach(item => {
+      no_of_items += item.quantity;
+    });
+  }
 
   return (
     <div className="p-2 my-2 flex justify-between bg-orange-100 rounded-md shadow-xl top-0 sticky z-10">
@@ -42,7 +54,13 @@ const Header = () => {
             </Link>
           </li>
           <li className=" p-2 m-2 hover:bg-red-500 rounded-md">
-            <Link className="text-black hover:text-white">Cart</Link>
+            <Link to="/cart" className="text-black hover:text-white flex items-center">
+              <span className="align-middle text-2xl">
+                <FiShoppingCart />
+              </span>
+              {cartItems.length > 0 && <span className="mx-2 px-2 align-middle text-white rounded-md bg-green-700">{no_of_items}
+              </span>}
+            </Link>
           </li>
           <li className=" p-2 m-2 ">
             <button
@@ -54,9 +72,7 @@ const Header = () => {
               {btnLogin}
             </button>
           </li>
-          <li className="p-2 font-bold">
-            {loggedInUser}
-          </li>
+          <li className="p-2 font-bold">{loggedInUser}</li>
         </ul>
       </div>
     </div>
