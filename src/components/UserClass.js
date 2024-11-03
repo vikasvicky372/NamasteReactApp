@@ -28,13 +28,11 @@ class UserClass extends React.Component {
       <div className="user-card">
         <div className="content-container">
           <h1>Name: {name}</h1>
-            <UserContext.Consumer>
-              {({ loggedInUser }) => {
-                //{
-                  return <div className="font-bold">user: {loggedInUser}</div>
-                //}
-              }}
-            </UserContext.Consumer>
+          <UserContext.Consumer>
+            {({ loggedInUser }) => {
+              return <div className="font-bold">user: {loggedInUser}</div>;
+            }}
+          </UserContext.Consumer>
 
           <h3>Location: {location}</h3>
           <h3>Contact: 7989927081</h3>
